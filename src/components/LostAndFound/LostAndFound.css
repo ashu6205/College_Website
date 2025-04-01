@@ -1,0 +1,426 @@
+/* src/components/LostAndFound/LostAndFound.css */
+.lost-found-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.lost-found-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.lost-found-header h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+}
+
+.add-item-button {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.add-item-button:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-button {
+    padding: 8px 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button.active {
+    background: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.item-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+}
+
+.item-card.lost {
+    border-top: 4px solid #e74c3c;
+}
+
+.item-card.found {
+    border-top: 4px solid #2ecc71;
+}
+
+.item-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-content {
+    padding: 20px;
+}
+
+.item-content h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.item-description {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.item-details {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.item-details span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.contact-button {
+    width: 100%;
+    padding: 10px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-button:hover {
+    background: #357abd;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Styles */
+.form-group {
+    z-index: 5;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lost-found-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .filters {
+        justify-content: center;
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Add to LostAndFound.css */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #666;
+}
+
+.error-message {
+    text-align: center;
+    padding: 20px;
+    background: #fff5f5;
+    color: #e74c3c;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.error-message button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.no-items {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.no-items i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.item-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.lost .item-status {
+    background: #fff5f5;
+    color: #e74c3c;
+}
+
+.found .item-status {
+    background: #f0fff4;
+    color: #2ecc71;
+}
+
+.delete-button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    background: #fff5f5;
+    color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+/* Add/Update in your LostAndFound.css */
+.item-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.item-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.item-card:hover .item-image img {
+    transform: scale(1.05);
+}
+
+.item-content {
+    padding: 20px;
+}
+
+.item-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.item-card.lost .item-status {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.item-card.found .item-status {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.item-details {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    color: #666;
+}
+
+.item-details span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.contact-button,
+.delete-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.contact-button {
+    background: #2196f3;
+    color: white;
+}
+
+.delete-button {
+    background: #f44336;
+    color: white;
+}
+
+.contact-button:hover,
+.delete-button:hover {
+    filter: brightness(1.1);
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .items-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .item-actions {
+        flex-direction: column;
+    }
+
+    .contact-button,
+    .delete-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
