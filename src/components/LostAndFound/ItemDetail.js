@@ -44,7 +44,7 @@ const ItemDetail = () => {
     const fetchItemDetails = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -65,7 +65,7 @@ const ItemDetail = () => {
     const fetchRelatedItems = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}/related`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/related`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -89,7 +89,7 @@ const ItemDetail = () => {
         try {
             setClaimsLoading(true);
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}/claims`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/claims`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -139,7 +139,7 @@ const ItemDetail = () => {
                 file: fileInput?.files[0]
             });
 
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}/claim`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/claim`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -171,7 +171,7 @@ const ItemDetail = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}/status`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -193,7 +193,7 @@ const ItemDetail = () => {
     const handleClaimStatusUpdate = async (claimId, newStatus) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}/claims/${claimId}/status`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/claims/${claimId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -235,7 +235,7 @@ const ItemDetail = () => {
         if (window.confirm('Are you sure you want to delete this item? This action cannot be undone.')) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}`, {
+                const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -296,7 +296,7 @@ const ItemDetail = () => {
                     <div className="item-images">
                         {item.images && item.images.length > 0 ? (
                             <img 
-                                src={`http://localhost:5000${item.images[0]}`}
+                                src={`https://college-website-backend.onrender.com${item.images[0]}`}
                                 alt={item.title}
                                 className="main-image"
                                 onError={(e) => {
@@ -459,9 +459,9 @@ const ItemDetail = () => {
                                                             <h4>Proof of Ownership:</h4>
                                                             <div className="proof-image-container">
                                                                 <img 
-                                                                    src={`http://localhost:5000${claim.proofImage}`}
+                                                                    src={`https://college-website-backend.onrender.com${claim.proofImage}`}
                                                                     alt="Proof of ownership"
-                                                                    onClick={() => window.open(`http://localhost:5000${claim.proofImage}`, '_blank')}
+                                                                    onClick={() => window.open(`https://college-website-backend.onrender.com${claim.proofImage}`, '_blank')}
                                                                     onError={(e) => {
                                                                         e.target.src = '/placeholder.jpg';
                                                                     }}
@@ -531,7 +531,7 @@ const ItemDetail = () => {
                                     {relatedItem.images && relatedItem.images.length > 0 && (
                                         <div className="related-item-image">
                                             <img 
-                                                src={`http://localhost:5000${relatedItem.images[0].path}`}
+                                                src={`https://college-website-backend.onrender.com${relatedItem.images[0].path}`}
                                                 alt={relatedItem.title}
                                                 onError={(e) => {
                                                     e.target.src = '/placeholder.jpg';

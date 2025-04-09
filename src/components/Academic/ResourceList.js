@@ -58,7 +58,7 @@ const ResourceList = ({ resources, isAdmin }) => {
                         {resource.files && resource.files.map((file, index) => (
                             <a 
                                 key={index}
-                                href={`http://localhost:5000${file.path}`}
+                                href={`https://college-website-backend.onrender.com${file.path}`}
                                 className="file-link"
                                 target="_blank"
                                 rel="noopener noreferrer"

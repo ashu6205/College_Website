@@ -20,7 +20,7 @@ const AddStudentsModal = ({ groupId, onClose, onSuccess }) => {
                 .filter(email => email); // Remove empty strings
 
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/academic/groups/${groupId}/students`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/academic/groups/${groupId}/students`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

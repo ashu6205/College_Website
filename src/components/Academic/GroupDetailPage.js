@@ -43,7 +43,7 @@ const GroupDetailPage = () => {
     const fetchGroupDetails = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/academic/groups/${groupId}`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/academic/groups/${groupId}`, {
                 headers: {
                     'Authorization': token,
                 }
@@ -92,7 +92,7 @@ const GroupDetailPage = () => {
     const fetchGroupResources = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/academic/groups/${groupId}/resources`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/academic/groups/${groupId}/resources`, {
                 headers: {
                     'Authorization': token,
                 }
@@ -213,7 +213,7 @@ const GroupDetailPage = () => {
                                 {resource.files && resource.files.map((file, index) => (
                                     <a 
                                         key={index}
-                                        href={`http://localhost:5000${file.path}`}
+                                        href={`https://college-website-backend.onrender.com${file.path}`}
                                         className="file-download"
                                         target="_blank"
                                         rel="noopener noreferrer"

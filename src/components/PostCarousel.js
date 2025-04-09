@@ -27,7 +27,7 @@ const PostCarousel = () => {
     const fetchPosts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/posts', {
+            const response = await axios.get('https://college-website-backend.onrender.com/api/posts', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -101,7 +101,7 @@ const PostCarousel = () => {
                             <div className="carousel-image">
                                 {post.media && post.media.length > 0 ? (
                                     <img 
-                                        src={`http://localhost:5000${post.media[0].path}`}
+                                        src={`https://college-website-backend.onrender.com${post.media[0].path}`}
                                         alt={post.media[0].originalName || 'Post image'}
                                         onError={handleImageError}
                                     />

@@ -722,3 +722,52 @@ body {
 .create-btn:hover {
     background: #0056b3;
 }
+.select-channel-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+.prompt-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.prompt-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1e3a8a;
+}
+
+.prompt-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.prompt-image {
+    width: 100%;
+    max-width: 300px;
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

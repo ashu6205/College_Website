@@ -18,7 +18,7 @@ const ChannelsList = ({ onSelectChannel, selectedChannelId, user }) => {
 
     const fetchChannels = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/channels', {
+            const response = await axios.get('https://college-website-backend.onrender.com/api/channels', {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
 
@@ -38,7 +38,7 @@ const ChannelsList = ({ onSelectChannel, selectedChannelId, user }) => {
         }
     
         try {
-            const response = await axios.post('http://localhost:5000/api/channels', 
+            const response = await axios.post('https://college-website-backend.onrender.com/api/channels', 
                 { 
                     name: newChannelName, 
                     description: newChannelDescription, 
@@ -58,7 +58,7 @@ const ChannelsList = ({ onSelectChannel, selectedChannelId, user }) => {
 
     const deleteChannel = async (channelId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/channels/${channelId}`, {
+            await axios.delete(`https://college-website-backend.onrender.com/api/channels/${channelId}`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
 
@@ -73,7 +73,7 @@ const ChannelsList = ({ onSelectChannel, selectedChannelId, user }) => {
     const joinChannel = async (channelId) => {
         try {
             await axios.post(
-                `http://localhost:5000/api/channels/${channelId}/join`,
+                `https://college-website-backend.onrender.com/api/channels/${channelId}/join`,
                 {},
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             );
@@ -87,7 +87,7 @@ const ChannelsList = ({ onSelectChannel, selectedChannelId, user }) => {
     const leaveChannel = async (channelId) => {
         try {
             await axios.post(
-                `http://localhost:5000/api/channels/${channelId}/leave`,
+                `https://college-website-backend.onrender.com/api/channels/${channelId}/leave`,
                 {},
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             );

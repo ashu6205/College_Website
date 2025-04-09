@@ -38,7 +38,7 @@ const CreateGroupModal = ({ onClose, onSuccess }) => {
             const token = localStorage.getItem('token');
             console.log('Fetching users with token:', token); // Debug log
     
-            const response = await fetch('http://localhost:5000/api/auth/users', {
+            const response = await fetch('https://college-website-backend.onrender.com/api/auth/users', {
                 headers: {
                     'Authorization': `Bearer ${token}` // Make sure to add 'Bearer' if required
                 }
@@ -90,7 +90,7 @@ const CreateGroupModal = ({ onClose, onSuccess }) => {
             console.log('Submitting data:', submitData);
 
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/academic/groups', {
+            const response = await fetch('https://college-website-backend.onrender.com/api/academic/groups', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

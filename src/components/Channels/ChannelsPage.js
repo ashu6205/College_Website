@@ -20,8 +20,11 @@ const ChannelsPage = ({ user }) => {
                     <Chat channel={selectedChannel} user={user} />
                 ) : (
                     <div className="select-channel-prompt">
-                        <h2>Welcome to Channels</h2>
-                        <p>Select a channel to start chatting</p>
+                        <div className="prompt-card">
+                            <h2 className="prompt-title">👋 Welcome to Channels</h2>
+                            <p className="prompt-text">Select a channel from the sidebar to start chatting with your community.</p>
+                             
+                        </div>
                     </div>
                 )}
             </div>

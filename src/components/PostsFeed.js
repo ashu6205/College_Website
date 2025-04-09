@@ -14,7 +14,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
     const fetchPosts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:5000/api/posts?page=${page}`, {
+            const response = await axios.get(`https://college-website-backend.onrender.com/api/posts?page=${page}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             
@@ -37,7 +37,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
         if (window.confirm('Are you sure you want to delete this post?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+                await axios.delete(`https://college-website-backend.onrender.com/api/posts/${postId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 // Refresh posts after deletion
@@ -51,7 +51,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
     const handleLike = async (postId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:5000/api/posts/${postId}/like`, {}, {
+            await axios.post(`https://college-website-backend.onrender.com/api/posts/${postId}/like`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             
@@ -77,7 +77,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
             const token = localStorage.getItem('token');
             
             const response = await axios.post(
-                `http://localhost:5000/api/posts/${postId}/comment`,
+                `https://college-website-backend.onrender.com/api/posts/${postId}/comment`,
                 { content: comment },
                 { headers: { 'Authorization': `Bearer ${token}` }}
             );
@@ -127,7 +127,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
                     {post.media && post.media.length > 0 && (
                         <div className="post-media">
                             <img 
-                                src={`http://localhost:5000${post.media[0].path}`}
+                                src={`https://college-website-backend.onrender.com${post.media[0].path}`}
                                 alt="Post content"
                                 onError={(e) => {
                                     e.target.src = '/placeholder.jpg';

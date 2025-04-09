@@ -43,7 +43,7 @@ const LostAndFound = ({ isAdmin }) => {
     const fetchItems = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/lostfound', {
+            const response = await fetch('https://college-website-backend.onrender.com/api/lostfound', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -70,7 +70,7 @@ const LostAndFound = ({ isAdmin }) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`http://localhost:5000/api/lostfound/${itemId}`, {
+                const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -126,7 +126,7 @@ const handleSubmit = async (e) => {
                 formDataToSend.append('images', image);
             });
 
-            const response = await fetch('http://localhost:5000/api/lostfound', {
+            const response = await fetch('https://college-website-backend.onrender.com/api/lostfound', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -136,7 +136,7 @@ const handleSubmit = async (e) => {
 
             await handleResponse(response);
         } else {
-            const response = await fetch('http://localhost:5000/api/lostfound', {
+            const response = await fetch('https://college-website-backend.onrender.com/api/lostfound', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -288,7 +288,7 @@ const handleResponse = async (response) => {
                         {item.images && item.images.length > 0 && (
                             <div className="item-image">
                                 <img 
-                                    src={`http://localhost:5000${item.images[0]}`}
+                                    src={`https://college-website-backend.onrender.com${item.images[0]}`}
                                     alt={item.title}
                                     onError={(e) => {
                                         e.target.src = '/placeholder.jpg';

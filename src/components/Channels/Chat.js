@@ -16,7 +16,7 @@ const Chat = ({ channel, user }) => {
     );
 
     useEffect(() => {
-        const newSocket = io('http://localhost:5000', {
+        const newSocket = io('https://college-website-backend.onrender.com', {
             auth: { token: localStorage.getItem('token') }
         });
 
@@ -37,7 +37,7 @@ const Chat = ({ channel, user }) => {
 
     const fetchMessages = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/chat/${channel._id}/messages`, {
+            const response = await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
 
@@ -57,7 +57,7 @@ const Chat = ({ channel, user }) => {
         if (!newMessage.trim() || !isMember) return;
 
         try {
-            await fetch(`http://localhost:5000/api/chat/${channel._id}/messages`, {
+            await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -82,7 +82,7 @@ const Chat = ({ channel, user }) => {
         formData.append('file', file);
 
         try {
-            await fetch(`http://localhost:5000/api/chat/${channel._id}/messages/file`, {
+            await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages/file`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: formData
@@ -109,7 +109,7 @@ const Chat = ({ channel, user }) => {
                 {messages.map(message => {
                     const imageUrl = message.attachments?.[0]?.fileUrl?.startsWith('http') 
                     ? message.attachments[0]?.fileUrl 
-                    : `http://localhost:5000/${message.attachments?.[0]?.fileUrl.replace(/^\/+/, '')}`;
+                    : `https://college-website-backend.onrender.com/${message.attachments?.[0]?.fileUrl.replace(/^\/+/, '')}`;
                 
                 
 
