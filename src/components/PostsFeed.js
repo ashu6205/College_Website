@@ -138,9 +138,9 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
                     
                     <div className="post-content">
                         <div className="post-header">
-                            <div className="post-author">
+                            {/* <div className="post-author">
                                 <span>{post.author?.name || 'Anonymous'}</span>
-                            </div>
+                            </div> */}
                             <span className="post-date">
                                 {new Date(post.createdAt).toLocaleDateString()}
                             </span>
@@ -178,7 +178,7 @@ const PostsFeed = ({ isAdmin }) => { // Add isAdmin prop
                                         <div key={index} className="comment">
                                             <div className="comment-author">
                                                 <img 
-                                                    src={comment.author?.avatar || '/default-avatar.png'} 
+                                                    src={comment.author?.avatar || '/man.png'} 
                                                     alt={comment.author?.name}
                                                     className="commenter-avatar"
                                                 />

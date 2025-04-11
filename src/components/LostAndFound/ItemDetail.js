@@ -193,6 +193,7 @@ const ItemDetail = () => {
     const handleClaimStatusUpdate = async (claimId, newStatus) => {
         try {
             const token = localStorage.getItem('token');
+            console.log('Updating claim status:', { claimId, newStatus });
             const response = await fetch(`https://college-website-backend.onrender.com/api/lostfound/${itemId}/claims/${claimId}/status`, {
                 method: 'PATCH',
                 headers: {
@@ -483,7 +484,7 @@ const ItemDetail = () => {
                                                                 </button>
                                                                 <button 
                                                                     className="btn-reject"
-                                                                    onClick={() => handleClaimStatusUpdate(claim._id, 'rejected')}
+                                                                    onClick={() => handleClaimStatusUpdate(claim.id, 'rejected')}
                                                                 >
                                                                     <i className="fas fa-times"></i> Reject
                                                                 </button>

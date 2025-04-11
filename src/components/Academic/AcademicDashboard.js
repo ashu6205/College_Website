@@ -38,17 +38,24 @@ const AcademicDashboard = ({ isAdmin }) => {
                     'Authorization': token,
                 }
             });
-
+    
             if (!response.ok) throw new Error('Failed to fetch groups');
             const data = await response.json();
-            setGroups(data.groups);
+    
+            // If admin, set isMember true for all groups
+            const processedGroups = isAdmin
+                ? data.groups.map(group => ({ ...group, isMember: true }))
+                : data.groups;
+    
+            setGroups(processedGroups);
             setLoading(false);
         } catch (err) {
             console.error('Error fetching groups:', err);
             setError(err.message);
             setLoading(false);
         }
-    }, []);
+    }, [isAdmin]);
+    
 
     useEffect(() => {
         fetchGroups();

@@ -15,6 +15,7 @@ import ChannelsPage from './components/Channels/ChannelsPage';
 import './App.css';
 
 function App() {
+    
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userData, setUserData] = useState(null);
 

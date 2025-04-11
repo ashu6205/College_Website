@@ -1,9 +1,7 @@
-/* src/components/PostCarousel.css */
 .carousel-wrapper {
     max-width: 1100px;
     margin: 40px auto;
     padding: 10px;
-
 }
 
 .carousel {
@@ -13,9 +11,16 @@
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    /* Gradient border with visible contrast */
+    border: 6px solid;
+    border-image: linear-gradient(135deg, #3f87a6, #ebf8e1, #f69d3c);
+    border-image-slice: 1;
+
+    /* Enhanced shadow for depth */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
+
 
 .carousel-inner {
     position: relative;
@@ -33,7 +38,7 @@
     opacity: 0;
     visibility: hidden;
     transform: scale(1);
-    padding: 20px; /* Added padding */
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .carousel-slide.active {
@@ -47,7 +52,6 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-    padding: 10px; /* Added padding */
 }
 
 .carousel-image img {
@@ -63,8 +67,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.1) 20%,
+        transparent
+    );
     color: #fff;
 }
 
@@ -75,48 +84,32 @@
     line-height: 1.5;
     font-weight: 400;
 }
-
+ 
 /* Post Tags */
 .post-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.tag {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-/* Controls */
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 2;
-}
-
-.control-button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
     justify-content: center;
-    font-size: 1.5rem;
-    color: #333;
+}
+
+/* Tag Style – clean, modern and elevated */
+.tag {
+    background-color: #ffffff;
+    color: #111;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+.tag:hover {
+    background-color: #f2f2f2;
+    transform: scale(1.05);
 }
 
 /* Loading, Empty, and Error States */
@@ -124,14 +117,14 @@
 .carousel-error,
 .carousel-empty {
     width: 100%;
-    height: 550px;
+    height: 650px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #fff;
     border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.07);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -162,6 +155,7 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .indicator.active {
@@ -184,7 +178,7 @@
         padding: 0 15px;
     }
     .carousel {
-        height: 400px;
+        height: 420px;
     }
     .carousel-content {
         padding: 15px;
@@ -193,50 +187,30 @@
         font-size: 1rem;
         margin-bottom: 10px;
     }
-    .control-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
 }
 
 @media (max-width: 480px) {
     .carousel {
-        height: 350px;
+        height: 360px;
     }
     .carousel-content {
         padding: 10px;
     }
 }
-/* Make the background gradient lighter for better text visibility */
-.carousel-content {
+ 
+.carousel::before {
+    content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 25px; /* Increased padding */
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.6), /* Reduced opacity */
-        rgba(0, 0, 0, 0.1) 20%,
-        transparent
-    );
-    color: #fff;
-}
-
-/* Fix tag spacing */
-.post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* Increased spacing */
-    margin-top: 10px; /* Added margin to move up */
-}
-
-.tag {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 16px; /* Added padding */
+    inset: 0;
     border-radius: 20px;
-    font-size: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
+    padding: 3px;
+    background: linear-gradient(135deg, #3f87a6, #f69d3c);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
 }
+

@@ -10,8 +10,7 @@ const Chat = ({ channel, user }) => {
     const messagesEndRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    // Check if user is a member of the channel
-    const isMember = channel.members.some(member => 
+    const isMember = channel.members.some(member =>
         (typeof member.user === "string" ? member.user : member.user?._id) === user?.id
     );
 
@@ -21,8 +20,10 @@ const Chat = ({ channel, user }) => {
         });
 
         newSocket.emit('join_channel', channel._id);
+        console.log('[Socket] Joined channel:', channel._id);
 
         newSocket.on('new_message', (message) => {
+            console.log('[Socket] Received new message:', message);
             setMessages(prev => [...prev, message].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)));
         });
 
@@ -32,22 +33,25 @@ const Chat = ({ channel, user }) => {
         return () => {
             newSocket.emit('leave_channel', channel._id);
             newSocket.disconnect();
+            console.log('[Socket] Left channel and disconnected');
         };
     }, [channel._id]);
 
     const fetchMessages = async () => {
         try {
+            console.log('[Fetch] Fetching messages for channel:', channel._id);
             const response = await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
 
             const data = await response.json();
-            const sortedMessages = data.messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            console.log('[Fetch] Fetched messages:', data.messages);
 
+            const sortedMessages = data.messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
             setMessages(sortedMessages);
             setIsLoading(false);
         } catch (error) {
-            console.error('Error fetching messages:', error);
+            console.error('[Fetch] Error fetching messages:', error);
             setIsLoading(false);
         }
     };
@@ -57,6 +61,7 @@ const Chat = ({ channel, user }) => {
         if (!newMessage.trim() || !isMember) return;
 
         try {
+            console.log('[Send] Sending message:', newMessage);
             await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages`, {
                 method: 'POST',
                 headers: {
@@ -68,7 +73,7 @@ const Chat = ({ channel, user }) => {
 
             setNewMessage('');
         } catch (error) {
-            console.error('Error sending message:', error);
+            console.error('[Send] Error sending message:', error);
         }
     };
 
@@ -78,17 +83,22 @@ const Chat = ({ channel, user }) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        console.log('[Upload] Uploading file:', file.name);
+
         const formData = new FormData();
         formData.append('file', file);
 
         try {
-            await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages/file`, {
+            const res = await fetch(`https://college-website-backend.onrender.com/api/chat/${channel._id}/messages/file`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: formData
             });
+
+            const data = await res.json();
+            console.log('[Upload] File upload response:', data);
         } catch (error) {
-            console.error('Error uploading file:', error);
+            console.error('[Upload] Error uploading file:', error);
         }
     };
 
@@ -97,6 +107,19 @@ const Chat = ({ channel, user }) => {
     }, [messages]);
 
     if (isLoading) return <div className="chat-loading">Loading messages...</div>;
+
+    const getAttachmentUrl = (fileUrl) => {
+        if (!fileUrl) return '';
+
+        const isFile = /\.(pdf|docx?|xlsx?|pptx?|zip|rar)$/i.test(fileUrl);
+        const baseName = fileUrl.split('/').pop();
+
+        const finalUrl = fileUrl.startsWith('http')
+            ? fileUrl
+            : `https://college-website-backend.onrender.com/uploads/chat/${isFile ? 'files' : 'images'}/${baseName}`;
+
+        return finalUrl;
+    };
 
     return (
         <div className="chat-container">
@@ -107,11 +130,10 @@ const Chat = ({ channel, user }) => {
 
             <div className="messages-container">
                 {messages.map(message => {
-                    const imageUrl = message.attachments?.[0]?.fileUrl?.startsWith('http') 
-                    ? message.attachments[0]?.fileUrl 
-                    : `https://college-website-backend.onrender.com/${message.attachments?.[0]?.fileUrl.replace(/^\/+/, '')}`;
-                
-                
+                    const attachment = message.attachments?.[0];
+                    const fileUrl = getAttachmentUrl(attachment?.fileUrl);
+
+                    console.log('[Render] File URL used:', fileUrl);
 
                     return (
                         <div
@@ -127,31 +149,35 @@ const Chat = ({ channel, user }) => {
                             ) : (
                                 <div className="message-attachment">
                                     {message.messageType === 'image' ? (
-                                        <img 
-                                            src={imageUrl} 
-                                            alt="attachment" 
+                                        <img
+                                            src={fileUrl}
+                                            alt="attachment"
                                             className="message-image"
                                             onError={(e) => {
-                                                console.error("Image failed to load:", imageUrl);
+                                                console.error('[Image] Failed to load:', fileUrl);
                                                 e.target.style.display = 'none';
                                             }}
                                         />
                                     ) : (
-                                        <a 
-                                            href={imageUrl}
+                                        <a
+                                            href={fileUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="file-attachment"
                                         >
                                             <i className="fas fa-file"></i>
-                                            {message.attachments[0]?.fileName}
+                                            {attachment?.fileName}
                                         </a>
                                     )}
                                 </div>
                             )}
 
                             <span className="timestamp">
-                                {new Date(message.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
+                                {new Date(message.createdAt).toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true
+                                })}
                             </span>
                         </div>
                     );
@@ -195,4 +221,3 @@ const Chat = ({ channel, user }) => {
 };
 
 export default Chat;
- 

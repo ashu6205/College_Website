@@ -51,8 +51,9 @@ const GroupDetailPage = () => {
             
             if (!response.ok) throw new Error('Failed to fetch group details');
             const data = await response.json();
-            console.log('Group details:', data);
+           
             if (data.success && data.group) {
+                 
                 setGroupDetails(data.group);
                 determineUserRole(data.group);
             }
@@ -65,23 +66,22 @@ const GroupDetailPage = () => {
     const determineUserRole = (group) => {
         try {
             const user = JSON.parse(localStorage.getItem('user'));
-            if (!user || !user._id) return;
+             
+            if (!user || !user.id) return;
 
-            console.log('Checking role for user:', user._id);
-            console.log('Group faculty:', group.faculty);
-            console.log('Group CRs:', group.classRepresentatives);
+             
 
-            if (group.faculty.includes(user._id)) {
-                console.log('User is faculty');
+            if (group.faculty.includes(user.id)) {
+                 
                 setUserRole('faculty');
-            } else if (group.classRepresentatives.includes(user._id)) {
-                console.log('User is CR');
+            } else if (group.classRepresentatives.includes(user.id)) {
+                
                 setUserRole('cr');
-            } else if (group.students.includes(user._id)) {
-                console.log('User is student');
+            } else if (group.students.includes(user.id)) {
+                 
                 setUserRole('student');
             } else {
-                console.log('User role not determined');
+                 
                 setUserRole(null);
             }
         } catch (err) {
@@ -133,6 +133,7 @@ const GroupDetailPage = () => {
         <div className="group-detail-page">
             {groupDetails && (
                 <div className="group-info">
+                    
                     <div className="group-header">
                         <div className="group-title">
                             <h2>{groupDetails.department} - {groupDetails.batchYear}</h2>
@@ -213,7 +214,7 @@ const GroupDetailPage = () => {
                                 {resource.files && resource.files.map((file, index) => (
                                     <a 
                                         key={index}
-                                        href={`https://college-website-backend.onrender.com${file.path}`}
+                                        href={`https://college-website-backend.onrender.com/${file.path}`}
                                         className="file-download"
                                         target="_blank"
                                         rel="noopener noreferrer"

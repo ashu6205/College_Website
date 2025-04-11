@@ -1,53 +1,75 @@
-/* Centering the Signup Container */
+/* Signup Container Centering */
 .signup-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
     padding: 20px;
-}
-
-/* Signup Box (Same as Login Box) */
-.signup-box {
+  }
+  
+  /* Signup Box Styling */
+  .signup-box {
     background: white;
     padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 450px; /* Same width as Login Page */
-}
-
-/* Header Styling */
-h2 {
+    max-width: 460px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Header */
+  .signup-box h2 {
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-align: center;
-    font-size: 24px;
-}
-
-.subtitle {
+    font-size: 26px;
+    font-weight: 700;
+  }
+  
+  .subtitle {
     color: #666;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     font-size: 14px;
-}
-
-/* Form Groups */
-.form-group {
+  }
+  
+  /* Toggle Role Button */
+  .toggle-role-button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #e7f0ff;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 14px;
     margin-bottom: 20px;
-}
-
-/* Label */
-label {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .toggle-role-button:hover {
+    background-color: #d0e5ff;
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Label */
+  label {
     display: block;
     margin-bottom: 8px;
     color: #444;
     font-weight: 600;
-}
-
-/* Input Fields */
-.input-container {
+  }
+  
+  /* Input Fields */
+  .input-container {
     display: flex;
     align-items: center;
     border: 1px solid #ddd;
@@ -55,21 +77,13 @@ label {
     padding: 10px;
     background: #f9f9f9;
     transition: border-color 0.3s ease;
-}
-
-.input-container:focus-within {
+  }
+  
+  .input-container:focus-within {
     border-color: #007bff;
-}
-
-/* Input Icons */
-.input-icon {
-    color: #888;
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-/* Input Fields */
-input {
+  }
+  
+  input {
     flex: 1;
     border: none;
     background: transparent;
@@ -77,23 +91,21 @@ input {
     padding: 10px;
     outline: none;
     width: 100%;
-}
-
-/* Password Toggle Button */
-.password-toggle {
+  }
+  
+  /* Password Visibility Button */
+  .input-container button {
     background: none;
     border: none;
+    color: #007bff;
+    font-weight: 600;
     cursor: pointer;
-    padding: 5px;
-}
-
-.password-toggle i {
-    color: #666;
-    font-size: 16px;
-}
-
-/* Signup Button (Same as Login Button) */
-.signup-button {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  
+  /* Signup Button */
+  .signup-button {
     width: 100%;
     padding: 12px;
     background-color: #007bff;
@@ -105,49 +117,60 @@ input {
     transition: background-color 0.3s ease;
     font-weight: 600;
     margin-top: 10px;
-}
-
-.signup-button:hover {
+  }
+  
+  .signup-button:hover {
     background-color: #0056b3;
-}
-
-/* Error Message */
-.error-message {
-    background-color: #fff2f2;
+  }
+  
+  .signup-button.loading {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  /* Error Message */
+  .error-message {
+    background-color: #ffe5e5;
     color: #dc3545;
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 15px;
     text-align: center;
     font-size: 14px;
-}
-
-/* Additional Options */
-.additional-options {
-    margin-top: 20px;
+  }
+  
+  /* Login Link */
+  .login-link {
     text-align: center;
-}
-
-/* Login Link */
-.link {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .link {
     color: #007bff;
     cursor: pointer;
     font-weight: 500;
-}
-
-.link:hover {
+    margin-left: 5px;
+  }
+  
+  .link:hover {
     text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
     .signup-box {
-        padding: 30px;
-        max-width: 90%;
+      padding: 30px 20px;
+      max-width: 95%;
     }
-
+  
     input {
-        font-size: 14px;
-        padding: 8px;
+      font-size: 14px;
+      padding: 8px;
     }
-}
+  
+    .toggle-role-button {
+      font-size: 13px;
+    }
+  }
+  

@@ -248,3 +248,90 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(74, 144, 226, 0.5);
 }
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(45deg, #c0392b, #a93226);
+  box-shadow: 0 6px 18px rgba(192, 57, 43, 0.3);
+  transform: translateY(-2px);
+}
+
+.delete-btn i {
+  font-size: 16px;
+}
+/* Enhanced Circle Animation */
+@keyframes floatAndPulse {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(10px, -10px) scale(1.05) rotate(5deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(-10px, 10px) scale(1.1) rotate(-5deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(5px, -5px) scale(1.05) rotate(3deg);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+}
+
+/* Animated Ambient Circles */
+.ambient-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.3;
+  animation: floatAndPulse 20s ease-in-out infinite;
+  mix-blend-mode: lighten;
+}
+
+/* Circle Positions with Unique Animation Delays */
+.circle-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(45deg, #4a90e2, #67a6e6);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 450px;
+  height: 450px;
+  background: linear-gradient(45deg, #5b9ee6, #79b2e6);
+  top: 50%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.circle-3 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(45deg, #3f86da, #5596e2);
+  bottom: 10%;
+  left: 30%;
+  animation-delay: 10s;
+}
